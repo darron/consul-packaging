@@ -1,3 +1,9 @@
+consul (0.5.0-3) trusty; urgency=low
+
+  * Adjust for Datadog.
+
+ -- Darron Froese <darron@datadoghq.com>  Thu, 5 Mar 2015 20:52:16 +0000
+
 consul (0.5.0-2) trusty; urgency=low
 
   * Fix file size issues.

@@ -2,9 +2,9 @@ CONSUL_VERSION=0.5.0
 REPLICATE_VERSION=0.1.0
 TEMPLATE_VERSION=0.7.0
 ENVCONSUL_VERSION=0.5.0
-PACKAGER="Gavin M. Roy <gavinr@aweber.com>"
+PACKAGER="Darron Froese <darron@datadoghq.com>"
 ARCH=amd64
-ITERATION=2
+ITERATION=3
 
 all: consul consul-replicate consul-template consul-webui envconsul
 
@@ -32,7 +32,6 @@ dist/consul_${CONSUL_VERSION}-${ITERATION}_${ARCH}.deb: build/consul/usr/sbin/co
 			--package dist/consul_${CONSUL_VERSION}-${ITERATION}_${ARCH}.deb \
 			--name consul --version ${CONSUL_VERSION} --iteration ${ITERATION} \
 			--deb-changelog changes/consul \
-			--config-files etc/consul.d/00-consul.json \
 			--deb-default build/consul/etc/default/consul \
 			--deb-upstart build/consul/etc/init/consul \
 			--provides consul \
@@ -49,7 +48,6 @@ dist/consul-webui_${CONSUL_VERSION}-${ITERATION}_all.deb: build/consul-webui/usr
 			--depends consul \
 			--category web \
 			--package dist/consul-webui_${CONSUL_VERSION}-${ITERATION}_all.deb \
-			--config-files etc/consul.d/10-webui.json \
 			--name consul-webui --version ${CONSUL_VERSION} --iteration ${ITERATION} \
 			--description "Consul Web UI" . )
 
@@ -82,7 +80,6 @@ dist/consul-template_${TEMPLATE_VERSION}-${ITERATION}_${ARCH}.deb: build/consul-
 			--depends consul \
 			--category utils \
 			--deb-changelog changes/consul-template \
-			--config-files etc/consul-template.d/00-default.hcl \
 			--deb-default build/consul-template/etc/default/consul-template \
 			--deb-upstart build/consul-template/etc/init/consul-template \
 			--provides consul-template \
